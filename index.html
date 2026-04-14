@@ -1,338 +1,1057 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kudapan Anak Bangsa - Your Trusted Indonesian Snacks</title>
-    <meta name="description" content="Discover authentic and delicious Indonesian snacks from Kudapan Anak Bangsa, featuring @ini_jsnack and @shred_bar. Quality snacks for every craving.">
-    <meta name="keywords" content="Kudapan Anak Bangsa, Indonesian snacks, JSnack, Shred Bar, healthy snacks, authentic snacks, snack Indonesia, ini_jsnack, shred_bar">
-    <meta property="og:title" content="Kudapan Anak Bangsa - Your Trusted Indonesian Snacks">
-    <meta property="og:description" content="Discover authentic and delicious Indonesian snacks from Kudapan Anak Bangsa, featuring @ini_jsnack and @shred_bar. Quality snacks for every craving.">
-    <meta property="og:url" content="https://yourdomain.com"> <!-- REPLACE WITH ACTUAL DOMAIN -->
-    <meta property="og:type" content="website">
-    <!-- Add og:image if you have a logo/hero image ready -->
-    <!-- <meta property="og:image" content="https://yourdomain.com/images/kudapan-logo.jpg"> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kudapan Anak Bangsa — Authentic Indonesian Snacks</title>
+  <meta name="description" content="Discover authentic and delicious Indonesian snacks from Kudapan Anak Bangsa, featuring @ini_jsnack and @shred_bar. Quality snacks for every craving.">
+  <meta name="keywords" content="Kudapan Anak Bangsa, Indonesian snacks, JSnack, Shred Bar, healthy snacks, authentic snacks, snack Indonesia, ini_jsnack, shred_bar">
+  <meta property="og:title" content="Kudapan Anak Bangsa — Authentic Indonesian Snacks">
+  <meta property="og:description" content="Discover authentic and delicious Indonesian snacks from Kudapan Anak Bangsa, featuring @ini_jsnack and @shred_bar. Quality snacks for every craving.">
+  <meta property="og:url" content="https://yourdomain.com">
+  <meta property="og:type" content="website">
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        :root {
-            --primary-color: #A0522D; /* Earthy Brown */
-            --secondary-color: #FFD700; /* Gold */
-            --text-dark: #333333;
-            --text-light: #f4f4f4;
-            --bg-light: #ffffff;
-            --bg-dark: #2c2c2c;
-            --accent-color: #6B8E23; /* Olive Green */
-        }
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --cream:       oklch(96.5% 0.018 72);
+      --cream-deep:  oklch(92%   0.025 68);
+      --sand:        oklch(87%   0.04  72);
+      --terracotta:  oklch(48%   0.13  35);
+      --terra-light: oklch(62%   0.12  38);
+      --terra-dark:  oklch(30%   0.09  28);
+      --turmeric:    oklch(78%   0.19  82);
+      --olive:       oklch(52%   0.12  130);
+      --olive-light: oklch(65%   0.11  128);
+      --ink:         oklch(18%   0.025 30);
+      --ink-soft:    oklch(40%   0.04  35);
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
-            scroll-behavior: smooth;
-        }
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Plus Jakarta Sans', sans-serif;
 
-        header {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            padding: 1rem 0;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    }
 
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
+    /* ─── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-light);
-            text-decoration: none;
-        }
+    /* ─── BATIK SVG PATTERN ───────────────────────────────── */
+    .batik-bg {
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='16' fill='none' stroke='%23a0522d' stroke-width='0.6' stroke-opacity='0.18'/%3E%3Ccircle cx='40' cy='40' r='8' fill='none' stroke='%23a0522d' stroke-width='0.5' stroke-opacity='0.12'/%3E%3Ccircle cx='0' cy='0' r='16' fill='none' stroke='%23a0522d' stroke-width='0.6' stroke-opacity='0.18'/%3E%3Ccircle cx='0' cy='80' r='16' fill='none' stroke='%23a0522d' stroke-width='0.6' stroke-opacity='0.18'/%3E%3Ccircle cx='80' cy='0' r='16' fill='none' stroke='%23a0522d' stroke-width='0.6' stroke-opacity='0.18'/%3E%3Ccircle cx='80' cy='80' r='16' fill='none' stroke='%23a0522d' stroke-width='0.6' stroke-opacity='0.18'/%3E%3Cline x1='40' y1='24' x2='40' y2='56' stroke='%23a0522d' stroke-width='0.4' stroke-opacity='0.1'/%3E%3Cline x1='24' y1='40' x2='56' y2='40' stroke='%23a0522d' stroke-width='0.4' stroke-opacity='0.1'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
 
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
+    /* ─── NAV ─────────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 5vw, 4rem);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.5s var(--ease-out-quart),
+                  box-shadow 0.5s var(--ease-out-quart);
+    }
+    .nav.scrolled {
+      background: oklch(96.5% 0.018 72 / 0.96);
+      box-shadow: 0 1px 0 oklch(60% 0.06 60 / 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 600;
+      color: var(--terracotta);
+      letter-spacing: 0.01em;
+      line-height: 1.1;
+    }
+    .nav-logo span {
+      display: block;
+      font-size: 0.6em;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .nav-links {
+      list-style: none;
+      display: flex; gap: clamp(1.5rem, 3vw, 2.5rem);
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      transition: color 0.25s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 1px; background: var(--terracotta);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s var(--ease-out-quart);
+    }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-links a:hover::after { transform: scaleX(1); }
 
-        nav ul li {
-            margin-left: 2rem;
-        }
+    /* ─── HERO ────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+    .hero-left {
+      position: relative;
+      background: var(--terracotta);
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(2rem, 6vw, 5rem);
+      padding-top: 10rem;
+      z-index: 1;
+    }
+    .hero-left .batik-bg {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='16' fill='none' stroke='%23fff8f0' stroke-width='0.6' stroke-opacity='0.15'/%3E%3Ccircle cx='40' cy='40' r='8' fill='none' stroke='%23fff8f0' stroke-width='0.5' stroke-opacity='0.1'/%3E%3Ccircle cx='0' cy='0' r='16' fill='none' stroke='%23fff8f0' stroke-width='0.6' stroke-opacity='0.15'/%3E%3Ccircle cx='0' cy='80' r='16' fill='none' stroke='%23fff8f0' stroke-width='0.6' stroke-opacity='0.15'/%3E%3Ccircle cx='80' cy='0' r='16' fill='none' stroke='%23fff8f0' stroke-width='0.6' stroke-opacity='0.15'/%3E%3Ccircle cx='80' cy='80' r='16' fill='none' stroke='%23fff8f0' stroke-width='0.6' stroke-opacity='0.15'/%3E%3C/svg%3E");
+    }
+    .hero-tagline {
+      font-family: var(--ff-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--turmeric);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    .hero-heading {
+      font-family: var(--ff-display);
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+    }
+    .hero-heading em {
+      font-style: italic;
+      color: var(--turmeric);
+    }
+    .hero-cta {
+      margin-top: 3rem;
+      display: flex; align-items: center; gap: 1rem;
+      opacity: 0; transform: translateY(12px);
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--turmeric);
+      color: var(--terra-dark);
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.75rem;
+      border-radius: 0;
+      transition: background 0.3s, transform 0.25s var(--ease-out-quart);
+    }
+    .btn-primary:hover { background: oklch(82% 0.18 82); transform: translateY(-2px); }
+    .btn-primary svg { width: 14px; height: 14px; transition: transform 0.3s var(--ease-out-quart); }
+    .btn-primary:hover svg { transform: translateX(3px); }
 
-        nav ul li a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
+    .btn-ghost {
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: oklch(85% 0.03 60);
+      border-bottom: 1px solid oklch(70% 0.04 35);
+      padding-bottom: 2px;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .btn-ghost:hover { color: var(--cream); border-color: var(--cream); }
 
-        nav ul li a:hover {
-            color: var(--secondary-color);
-        }
+    .hero-right {
+      position: relative;
+      background: var(--cream);
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: clamp(2rem, 6vw, 5rem);
+      padding-top: 10rem;
+    }
+    .hero-right .batik-bg { opacity: 0.5; }
+    .hero-number {
+      font-family: var(--ff-display);
+      font-size: clamp(8rem, 18vw, 16rem);
+      font-weight: 300;
+      line-height: 0.85;
+      color: var(--sand);
+      user-select: none;
+      margin-bottom: -1rem;
+    }
+    .hero-sub {
+      position: relative; z-index: 1;
+    }
+    .hero-sub-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .hero-sub-text {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--ink-soft);
+      max-width: 34ch;
+      line-height: 1.75;
+    }
+    .hero-scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--ink-soft); z-index: 2;
+      animation: bobble 2.5s ease-in-out infinite;
+    }
+    .hero-scroll-hint svg { width: 20px; height: 20px; }
+    @keyframes bobble {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
 
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1549727546-d41933b91a78?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
-            color: var(--text-light);
-            text-align: center;
-            padding: 8rem 1rem;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    /* ─── SECTION BASE ───────────────────────────────────── */
+    .section { position: relative; }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
 
-        .hero-content {
-            max-width: 800px;
-        }
+    /* ─── DIVIDER ─────────────────────────────────────────── */
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        var(--sand) 20%,
+        var(--sand) 80%,
+        transparent
+      );
+      margin: 0;
+    }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            color: var(--secondary-color);
-        }
+    /* ─── BRANDS SECTION ─────────────────────────────────── */
+    #brands {
+      padding: clamp(5rem, 10vw, 9rem) 0;
+      background: var(--cream);
+    }
+    .brands-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: end;
+      gap: 2rem;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+    .brands-header-label {
+      font-family: var(--ff-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+    .brands-header-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.05;
+    }
+    .brands-header-title em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
+    .brands-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--sand);
+    }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
-            padding: 0.9rem 2rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 700;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
+    /* JSnack Card */
+    .brand-jsnack {
+      background: var(--cream-deep);
+      padding: clamp(2.5rem, 5vw, 4.5rem);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 480px;
+    }
+    .brand-jsnack .brand-bg-number {
+      position: absolute;
+      bottom: -2rem; right: -1rem;
+      font-family: var(--ff-display);
+      font-size: 14rem;
+      font-weight: 700;
+      color: var(--sand);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+    .brand-chip {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border: 1px solid currentColor;
+      width: fit-content;
+      margin-bottom: 2rem;
+    }
+    .brand-chip-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: currentColor; flex-shrink: 0;
+    }
+    .brand-jsnack .brand-chip { color: var(--terracotta); }
 
-        .btn:hover {
-            background-color: #e5c100;
-            transform: translateY(-2px);
-        }
+    .brand-name {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      position: relative; z-index: 1;
+    }
+    .brand-jsnack .brand-name { color: var(--terra-dark); }
 
-        section {
-            padding: 4rem 1rem;
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .brand-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.8;
+      max-width: 36ch;
+      color: var(--ink-soft);
+      position: relative; z-index: 1;
+    }
 
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 3rem;
-            position: relative;
-            display: inline-block;
-        }
+    .brand-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 3rem; position: relative; z-index: 1;
+    }
+    .brand-instagram {
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+    }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 60%;
-            height: 4px;
-            background-color: var(--secondary-color);
-            left: 20%;
-            bottom: -10px;
-            border-radius: 2px;
-        }
+    .btn-brand {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.8rem 1.5rem;
+      transition: transform 0.25s var(--ease-out-quart),
+                  background 0.3s, color 0.3s;
+    }
+    .btn-brand:hover { transform: translateY(-2px); }
+    .btn-brand svg { width: 13px; height: 13px; transition: transform 0.3s var(--ease-out-quart); }
+    .btn-brand:hover svg { transform: translateX(3px); }
 
-        .brands-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
+    .brand-jsnack .btn-brand {
+      background: var(--terracotta); color: var(--cream);
+    }
+    .brand-jsnack .btn-brand:hover { background: var(--terra-dark); }
 
-        .brand-card {
-            background-color: var(--bg-light);
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    /* Shred Bar Card */
+    .brand-shred {
+      background: var(--ink);
+      padding: clamp(2.5rem, 5vw, 4.5rem);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 480px;
+    }
+    .brand-shred .batik-bg {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='16' fill='none' stroke='%236B8E23' stroke-width='0.6' stroke-opacity='0.2'/%3E%3Ccircle cx='40' cy='40' r='8' fill='none' stroke='%236B8E23' stroke-width='0.5' stroke-opacity='0.15'/%3E%3Ccircle cx='0' cy='0' r='16' fill='none' stroke='%236B8E23' stroke-width='0.6' stroke-opacity='0.2'/%3E%3Ccircle cx='0' cy='80' r='16' fill='none' stroke='%236B8E23' stroke-width='0.6' stroke-opacity='0.2'/%3E%3Ccircle cx='80' cy='0' r='16' fill='none' stroke='%236B8E23' stroke-width='0.6' stroke-opacity='0.2'/%3E%3Ccircle cx='80' cy='80' r='16' fill='none' stroke='%236B8E23' stroke-width='0.6' stroke-opacity='0.2'/%3E%3C/svg%3E");
+    }
+    .brand-shred .brand-bg-number {
+      position: absolute;
+      bottom: -2rem; right: -1rem;
+      font-family: var(--ff-display);
+      font-size: 14rem;
+      font-weight: 700;
+      color: oklch(25% 0.03 35);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+    .brand-shred .brand-chip { color: var(--olive-light); }
+    .brand-shred .brand-name { color: var(--cream); }
+    .brand-shred .brand-desc { color: oklch(65% 0.04 60); }
+    .brand-shred .brand-instagram { color: oklch(55% 0.04 60); }
+    .brand-shred .btn-brand {
+      background: var(--olive); color: var(--cream);
+    }
+    .brand-shred .btn-brand:hover { background: oklch(45% 0.13 130); }
 
-        .brand-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-        }
+    /* ─── ABOUT SECTION ──────────────────────────────────── */
+    #about {
+      padding: clamp(5rem, 10vw, 9rem) 0;
+      background: var(--cream-deep);
+      position: relative;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+    .about-label-col {
+      padding-top: 0.6rem;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block; width: 2rem; height: 1px;
+      background: var(--terracotta);
+      flex-shrink: 0;
+    }
+    .about-side-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    .about-side-title em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+    .about-content {}
+    .about-body {
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--ink-soft);
+      margin-bottom: 3rem;
+    }
+    .about-body strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .about-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--sand);
+    }
+    .pillar {
+      padding: 1.75rem;
+      border-right: 1px solid var(--sand);
+    }
+    .pillar:last-child { border-right: none; }
+    .pillar-num {
+      font-family: var(--ff-display);
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--terracotta);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .pillar-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .pillar-desc {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
 
-        .brand-card h3 {
-            font-size: 2rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
+    /* ─── MARQUEE STRIPE ─────────────────────────────────── */
+    .marquee-stripe {
+      background: var(--terracotta);
+      padding: 1rem 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 0 2rem;
+      white-space: nowrap;
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--turmeric);
+      letter-spacing: 0.03em;
+    }
+    .marquee-item .dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--cream);
+      opacity: 0.5; flex-shrink: 0;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
 
-        .brand-card p {
-            font-size: 1rem;
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-        }
+    /* ─── CONTACT SECTION ───────────────────────────────── */
+    #contact {
+      background: var(--terra-dark);
+      padding: clamp(5rem, 10vw, 9rem) 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #contact .batik-bg {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='16' fill='none' stroke='%23fff8f0' stroke-width='0.6' stroke-opacity='0.06'/%3E%3Ccircle cx='40' cy='40' r='8' fill='none' stroke='%23fff8f0' stroke-width='0.5' stroke-opacity='0.04'/%3E%3Ccircle cx='0' cy='0' r='16' fill='none' stroke='%23fff8f0' stroke-width='0.6' stroke-opacity='0.06'/%3E%3Ccircle cx='0' cy='80' r='16' fill='none' stroke='%23fff8f0' stroke-width='0.6' stroke-opacity='0.06'/%3E%3Ccircle cx='80' cy='0' r='16' fill='none' stroke='%23fff8f0' stroke-width='0.6' stroke-opacity='0.06'/%3E%3Ccircle cx='80' cy='80' r='16' fill='none' stroke='%23fff8f0' stroke-width='0.6' stroke-opacity='0.06'/%3E%3C/svg%3E");
+    }
+    .contact-inner {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: start;
+    }
+    .contact-headline {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+    .contact-headline em {
+      font-style: italic;
+      color: var(--turmeric);
+    }
+    .contact-sub {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: oklch(65% 0.05 50);
+      max-width: 36ch;
+      line-height: 1.75;
+    }
+    .contact-details {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .contact-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid oklch(35% 0.05 30);
+    }
+    .contact-item:first-child { border-top: 1px solid oklch(35% 0.05 30); }
+    .contact-icon {
+      width: 36px; height: 36px;
+      background: oklch(35% 0.07 30);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { width: 16px; height: 16px; color: var(--turmeric); }
+    .contact-info-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: oklch(50% 0.05 45);
+      margin-bottom: 0.3rem;
+    }
+    .contact-info-value {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.5;
+    }
+    .contact-info-value a {
+      color: var(--turmeric);
+      transition: color 0.25s;
+    }
+    .contact-info-value a:hover { color: oklch(85% 0.18 82); }
 
-        .brand-card .btn {
-            background-color: var(--accent-color);
-            color: var(--text-light);
-        }
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      padding: 2.5rem 0;
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: oklch(55% 0.04 50);
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: oklch(40% 0.03 40);
+    }
+    .footer-links {
+      display: flex; gap: 1.5rem;
+    }
+    .footer-links a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: oklch(42% 0.04 45);
+      letter-spacing: 0.05em;
+      transition: color 0.25s;
+    }
+    .footer-links a:hover { color: oklch(65% 0.06 55); }
 
-        .brand-card .btn:hover {
-            background-color: #5d7e1c;
-        }
+    /* ─── SCROLL REVEAL ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.9s var(--ease-out-expo),
+                  transform 0.9s var(--ease-out-expo);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
 
-        #about {
-            background-color: #f9f9f9;
-        }
+    /* ─── HERO LINE REVEAL ───────────────────────────────── */
+    .hero-line-wrap {
+      overflow: hidden;
+      display: block;
+    }
+    .hero-line {
+      display: block;
+      transform: translateY(110%);
+      transition: transform 1s var(--ease-out-expo);
+    }
+    .hero-line.visible { transform: translateY(0); }
+    .hero-line:nth-child(2) { transition-delay: 0.08s; }
+    .hero-line:nth-child(3) { transition-delay: 0.16s; }
+    .hero-line:nth-child(4) { transition-delay: 0.24s; }
 
-        #about p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    /* ─── MOBILE ─────────────────────────────────────────── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column; gap: 5px; cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--terracotta); transition: all 0.3s;
+    }
 
-        #contact {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            padding: 6rem 1rem;
-        }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding-top: 7rem; min-height: 60svh; }
+      .hero-right { min-height: 50svh; }
+      .brands-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .about-pillars { grid-template-columns: 1fr; }
+      .pillar { border-right: none; border-bottom: 1px solid var(--sand); }
+      .pillar:last-child { border-bottom: none; }
+      .brands-header { grid-template-columns: 1fr; }
+      .brands-header-label { writing-mode: horizontal-tb; transform: none; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
 
-        #contact p {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-
-        #contact a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        #contact a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            background-color: var(--text-dark);
-            color: #aaaaaa;
-            padding: 2rem 1rem;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        footer .footer-links {
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        footer .footer-links a {
-            color: #aaaaaa;
-            text-decoration: none;
-            margin: 0 1rem;
-            transition: color 0.3s ease;
-        }
-
-        footer .footer-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 1.5rem;
-            }
-
-            nav ul {
-                display: none; /* Hide navigation on small screens for simplicity */
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    @media (max-width: 600px) {
+      .hero-number { font-size: 7rem; }
+      .brand-bg-number { font-size: 9rem !important; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="#" class="logo">Kudapan Anak Bangsa</a>
-            <nav>
-                <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#brands">Our Brands</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <section id="hero" class="hero">
-        <div class="hero-content">
-            <h1>Your Trusted Source for Authentic Indonesian Snacks</h1>
-            <p>Bringing the rich flavors and heritage of Indonesia to your table, with quality and taste you can trust.</p>
-            <a href="#brands" class="btn">Explore Our Snacks</a>
-        </div>
-    </section>
+  <!-- NAV -->
+  <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="Kudapan Anak Bangsa home">
+      Kudapan Anak Bangsa
+      <span>Snacks of the Nation</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#brands">Brands</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-    <section id="brands">
-        <h2 class="section-title">Our Delicious Brands</h2>
-        <div class="brands-grid">
-            <div class="brand-card">
-                <h3>@ini_jsnack</h3>
-                <p>JSnack offers a delightful array of traditional Indonesian snacks, crafted with authentic recipes and the finest local ingredients. Taste the true essence of Indonesia in every bite!</p>
-                <a href="https://instagram.com/ini_jsnack" class="btn" target="_blank">Visit JSnack Instagram</a>
+  <!-- HERO -->
+  <section id="hero" class="hero" aria-label="Hero">
+    <div class="hero-left">
+      <div class="batik-bg" aria-hidden="true"></div>
+
+      <p class="hero-tagline" id="heroTagline">
+        ✦ Asli Indonesia — Made with Pride
+      </p>
+
+      <h1 class="hero-heading" aria-label="Your Trusted Source for Authentic Indonesian Snacks">
+        <span class="hero-line-wrap"><span class="hero-line">Your Trusted</span></span>
+        <span class="hero-line-wrap"><span class="hero-line">Source for</span></span>
+        <span class="hero-line-wrap"><span class="hero-line"><em>Authentic</em></span></span>
+        <span class="hero-line-wrap"><span class="hero-line">Indonesian</span></span>
+        <span class="hero-line-wrap"><span class="hero-line">Snacks.</span></span>
+      </h1>
+
+      <div class="hero-cta" id="heroCta">
+        <a href="#brands" class="btn-primary">
+          Explore Brands
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+        </a>
+        <a href="#about" class="btn-ghost">Our Story</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="batik-bg" aria-hidden="true"></div>
+      <p class="hero-number" aria-hidden="true">2</p>
+      <div class="hero-sub">
+        <h2 class="hero-sub-title">
+          Two brands.<br>One mission.
+        </h2>
+        <p class="hero-sub-text">
+          Bringing the rich flavors and heritage of Indonesia to your table — with quality and taste you can trust, from local producers who care.
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M10 3v14M4 11l6 6 6-6"/>
+      </svg>
+      Scroll
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-stripe" aria-hidden="true">
+    <div class="marquee-track">
+      <!-- duplicated for seamless loop -->
+      <span class="marquee-item">Authentic Indonesian Flavors <span class="dot"></span></span>
+      <span class="marquee-item">Crafted with Local Ingredients <span class="dot"></span></span>
+      <span class="marquee-item">Taste the Heritage <span class="dot"></span></span>
+      <span class="marquee-item">Supporting Local Producers <span class="dot"></span></span>
+      <span class="marquee-item">From Our Warung to Your Table <span class="dot"></span></span>
+      <span class="marquee-item">Bangga Buatan Indonesia <span class="dot"></span></span>
+      <span class="marquee-item">Authentic Indonesian Flavors <span class="dot"></span></span>
+      <span class="marquee-item">Crafted with Local Ingredients <span class="dot"></span></span>
+      <span class="marquee-item">Taste the Heritage <span class="dot"></span></span>
+      <span class="marquee-item">Supporting Local Producers <span class="dot"></span></span>
+      <span class="marquee-item">From Our Warung to Your Table <span class="dot"></span></span>
+      <span class="marquee-item">Bangga Buatan Indonesia <span class="dot"></span></span>
+    </div>
+  </div>
+
+  <!-- BRANDS -->
+  <section id="brands" class="section">
+    <div class="container">
+      <header class="brands-header">
+        <p class="brands-header-label reveal">Our Brands</p>
+        <div>
+          <h2 class="brands-header-title reveal reveal-delay-1">
+            Snacks that tell<br><em>the story of Indonesia</em>
+          </h2>
+        </div>
+      </header>
+    </div>
+
+    <div class="brands-grid" role="list">
+      <!-- JSnack -->
+      <article class="brand-jsnack reveal" role="listitem">
+        <div class="batik-bg" aria-hidden="true"></div>
+        <div class="brand-bg-number" aria-hidden="true">01</div>
+
+        <div>
+          <div class="brand-chip">
+            <span class="brand-chip-dot" aria-hidden="true"></span>
+            Traditional Snacks
+          </div>
+          <h3 class="brand-name">@ini_jsnack</h3>
+          <p class="brand-desc">
+            JSnack offers a delightful array of traditional Indonesian snacks, crafted with authentic recipes and the finest local ingredients. Taste the true essence of Indonesia in every bite.
+          </p>
+        </div>
+
+        <div class="brand-footer">
+          <span class="brand-instagram">instagram.com/ini_jsnack</span>
+          <a href="https://instagram.com/ini_jsnack" class="btn-brand" target="_blank" rel="noopener noreferrer">
+            Visit JSnack
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Shred Bar -->
+      <article class="brand-shred reveal reveal-delay-2" role="listitem">
+        <div class="batik-bg" aria-hidden="true"></div>
+        <div class="brand-bg-number" aria-hidden="true">02</div>
+
+        <div>
+          <div class="brand-chip">
+            <span class="brand-chip-dot" aria-hidden="true"></span>
+            Energy &amp; Wellness
+          </div>
+          <h3 class="brand-name">@shred_bar</h3>
+          <p class="brand-desc">
+            Shred Bar provides wholesome and energizing snack bars designed for your active lifestyle. Fuel your day with delicious, nutritious options that keep you going strong.
+          </p>
+        </div>
+
+        <div class="brand-footer">
+          <span class="brand-instagram">shred.bar</span>
+          <a href="https://shred.bar" class="btn-brand" target="_blank" rel="noopener noreferrer">
+            Visit Shred Bar
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-label-col reveal">
+          <p class="section-label">About Us</p>
+          <h2 class="about-side-title">
+            Celebrating<br>Indonesia's<br><em>Culinary</em><br>Heritage
+          </h2>
+        </div>
+
+        <div class="about-content reveal reveal-delay-2">
+          <p class="about-body">
+            <strong>Kudapan Anak Bangsa</strong> is dedicated to celebrating and sharing the diverse culinary heritage of Indonesia through our premium snack brands. We are committed to quality, authenticity, and delivering delicious experiences to snack lovers everywhere.
+          </p>
+          <p class="about-body">
+            Our mission is to <strong>support local producers</strong> and bring the best of Indonesian flavors to the global stage — honoring tradition while embracing the future.
+          </p>
+
+          <div class="about-pillars reveal reveal-delay-3" role="list">
+            <div class="pillar" role="listitem">
+              <p class="pillar-num">01</p>
+              <p class="pillar-label">Quality</p>
+              <p class="pillar-desc">Finest local ingredients, held to the highest standard in every batch.</p>
             </div>
-            <div class="brand-card">
-                <h3>@shred_bar</h3>
-                <p>Shred Bar provides wholesome and energizing snack bars designed for your active lifestyle. Fuel your day with delicious, nutritious options that keep you going strong.</p>
-                <a href="https://shred.bar" class="btn" target="_blank">Visit Shred Bar Website</a>
+            <div class="pillar" role="listitem">
+              <p class="pillar-num">02</p>
+              <p class="pillar-label">Authenticity</p>
+              <p class="pillar-desc">Recipes rooted in Indonesian tradition, never compromised.</p>
             </div>
+            <div class="pillar" role="listitem">
+              <p class="pillar-num">03</p>
+              <p class="pillar-label">Community</p>
+              <p class="pillar-desc">Supporting local farmers, producers, and the spirit of <em>gotong royong</em>.</p>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="about">
-        <h2 class="section-title">About Kudapan Anak Bangsa</h2>
-        <p>Kudapan Anak Bangsa is dedicated to celebrating and sharing the diverse culinary heritage of Indonesia through our premium snack brands. We are committed to quality, authenticity, and delivering delicious experiences to snack lovers everywhere. Our mission is to support local producers and bring the best of Indonesian flavors to the global stage.</p>
-    </section>
+  <div class="divider"></div>
 
-    <section id="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <p>Have questions, partnership inquiries, or just want to say hello? We'd love to hear from you!</p>
-        <p>Email: <a href="mailto:info@kudapananakbangsa.com">info@kudapananakbangsa.com</a></p>
-        <p>Phone: <a href="tel:+628123456789">+62 812 3456 789</a> (Example - Please Update)</p>
-        <p>Address: [Your Full Business Address Here for Meta Verification - e.g., Jl. Contoh No. 123, Jakarta Selatan, DKI Jakarta 12345, Indonesia]</p>
-        <p>Operating Hours: Monday - Friday, 9:00 AM - 5:00 PM (GMT+7)</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Kudapan Anak Bangsa. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#privacy-policy">Privacy Policy</a> <!-- Link to your Privacy Policy page -->
-            <a href="#terms-of-service">Terms of Service</a> <!-- Link to your Terms of Service page -->
+  <!-- CONTACT -->
+  <section id="contact" class="section" aria-label="Contact">
+    <div class="batik-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="contact-inner">
+        <div class="reveal">
+          <p class="section-label" style="color: var(--turmeric);">
+            <span style="background: var(--turmeric); width: 2rem; height: 1px; display: inline-block; flex-shrink: 0;"></span>
+            Get in Touch
+          </p>
+          <h2 class="contact-headline">
+            We'd love to<br>
+            <em>hear from you.</em>
+          </h2>
+          <p class="contact-sub">
+            Questions, partnership inquiries, or just want to say hello? Reach out — we're always happy to connect.
+          </p>
         </div>
-        <p>Operated by IMAJI AI Pte. Ltd. and CV KUDAPAN ANAK BANGSA.</p>
-    </footer>
+
+        <div class="contact-details reveal reveal-delay-2" role="list">
+          <div class="contact-item" role="listitem">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="1" y="3" width="14" height="10" rx="1"/>
+                <path d="M1 5l7 5 7-5"/>
+              </svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Email</p>
+              <p class="contact-info-value">
+                <a href="mailto:kudapananakbangsa@gmail.com">kudapananakbangsa@gmail.com</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-item" role="listitem">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M13 10.5c-1 1-2.5 1.5-4 1a9 9 0 01-4.5-4.5c-.5-1.5 0-3 1-4l2 2-.5 1.5 1.5 1.5 1.5-.5 2 2z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Phone</p>
+              <p class="contact-info-value">
+                <a href="tel:+6281295029550">+62 812 9502 9550</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-item" role="listitem">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="8" cy="6.5" r="2.5"/>
+                <path d="M8 1C5.24 1 3 3.24 3 6c0 4.25 5 9 5 9s5-4.75 5-9c0-2.76-2.24-5-5-5z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Address</p>
+              <p class="contact-info-value" style="color: oklch(65% 0.05 55);">
+                Jl. Boulevard Raya Blok 19 No. 1, 3<br>
+                Pegangsaan Dua, Kelapa Gading<br>
+                Jakarta Utara, DKI Jakarta 14250
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-item" role="listitem">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="8" cy="8" r="6.5"/>
+                <path d="M8 4v4.5l2.5 1.5"/>
+              </svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Hours</p>
+              <p class="contact-info-value" style="color: oklch(65% 0.05 55);">
+                Monday – Friday, 9:00 AM – 5:00 PM<br>
+                <span style="font-size: 0.78rem; color: oklch(50% 0.04 50);">GMT+7 (WIB)</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-logo">Kudapan Anak Bangsa</p>
+        <p class="footer-copy">
+          &copy; 2026 CV Kudapan Anak Bangsa — NIB 1000000006634297
+        </p>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#privacy-policy">Privacy</a>
+          <a href="#terms-of-service">Terms</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('mainNav');
+    const onScroll = () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Hero entrance animation
+    const heroLines = document.querySelectorAll('.hero-line');
+    const heroTagline = document.getElementById('heroTagline');
+    const heroCta = document.getElementById('heroCta');
+
+    requestAnimationFrame(() => {
+      heroLines.forEach((line, i) => {
+        setTimeout(() => line.classList.add('visible'), 200 + i * 90);
+      });
+      setTimeout(() => {
+        heroTagline.style.opacity = '1';
+        heroTagline.style.transform = 'translateY(0)';
+        heroTagline.style.transition = 'opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1)';
+      }, 100);
+      setTimeout(() => {
+        heroCta.style.opacity = '1';
+        heroCta.style.transform = 'translateY(0)';
+        heroCta.style.transition = 'opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1)';
+      }, 800);
+    });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // Section label color fix for contact
+    const contactLabel = document.querySelector('#contact .section-label');
+    if (contactLabel) {
+      contactLabel.style.color = 'oklch(78% 0.19 82)';
+    }
+  </script>
+
 </body>
 </html>
