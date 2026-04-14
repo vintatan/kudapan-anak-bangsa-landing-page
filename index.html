@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kudapan Anak Bangsa - Your Trusted Indonesian Snacks</title>
+    <meta name="description" content="Discover authentic and delicious Indonesian snacks from Kudapan Anak Bangsa, featuring @ini_jsnack and @shred_bar. Quality snacks for every craving.">
+    <meta name="keywords" content="Kudapan Anak Bangsa, Indonesian snacks, JSnack, Shred Bar, healthy snacks, authentic snacks, snack Indonesia, ini_jsnack, shred_bar">
+    <meta property="og:title" content="Kudapan Anak Bangsa - Your Trusted Indonesian Snacks">
+    <meta property="og:description" content="Discover authentic and delicious Indonesian snacks from Kudapan Anak Bangsa, featuring @ini_jsnack and @shred_bar. Quality snacks for every craving.">
+    <meta property="og:url" content="https://yourdomain.com"> <!-- REPLACE WITH ACTUAL DOMAIN -->
+    <meta property="og:type" content="website">
+    <!-- Add og:image if you have a logo/hero image ready -->
+    <!-- <meta property="og:image" content="https://yourdomain.com/images/kudapan-logo.jpg"> -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #A0522D; /* Earthy Brown */
+            --secondary-color: #FFD700; /* Gold */
+            --text-dark: #333333;
+            --text-light: #f4f4f4;
+            --bg-light: #ffffff;
+            --bg-dark: #2c2c2c;
+            --accent-color: #6B8E23; /* Olive Green */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1549727546-d41933b91a78?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            color: var(--text-light);
+            text-align: center;
+            padding: 8rem 1rem;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            color: var(--secondary-color);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #e5c100;
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 4rem 1rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background-color: var(--secondary-color);
+            left: 20%;
+            bottom: -10px;
+            border-radius: 2px;
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .brand-card {
+            background-color: var(--bg-light);
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .brand-card h3 {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .brand-card p {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .brand-card .btn {
+            background-color: var(--accent-color);
+            color: var(--text-light);
+        }
+
+        .brand-card .btn:hover {
+            background-color: #5d7e1c;
+        }
+
+        #about {
+            background-color: #f9f9f9;
+        }
+
+        #about p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #contact {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 6rem 1rem;
+        }
+
+        #contact p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        #contact a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        #contact a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: var(--text-dark);
+            color: #aaaaaa;
+            padding: 2rem 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer .footer-links {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        footer .footer-links a {
+            color: #aaaaaa;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                display: none; /* Hide navigation on small screens for simplicity */
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Kudapan Anak Bangsa</a>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#brands">Our Brands</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Your Trusted Source for Authentic Indonesian Snacks</h1>
+            <p>Bringing the rich flavors and heritage of Indonesia to your table, with quality and taste you can trust.</p>
+            <a href="#brands" class="btn">Explore Our Snacks</a>
+        </div>
+    </section>
+
+    <section id="brands">
+        <h2 class="section-title">Our Delicious Brands</h2>
+        <div class="brands-grid">
+            <div class="brand-card">
+                <h3>@ini_jsnack</h3>
+                <p>JSnack offers a delightful array of traditional Indonesian snacks, crafted with authentic recipes and the finest local ingredients. Taste the true essence of Indonesia in every bite!</p>
+                <a href="https://instagram.com/ini_jsnack" class="btn" target="_blank">Visit JSnack Instagram</a>
+            </div>
+            <div class="brand-card">
+                <h3>@shred_bar</h3>
+                <p>Shred Bar provides wholesome and energizing snack bars designed for your active lifestyle. Fuel your day with delicious, nutritious options that keep you going strong.</p>
+                <a href="https://shred.bar" class="btn" target="_blank">Visit Shred Bar Website</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Kudapan Anak Bangsa</h2>
+        <p>Kudapan Anak Bangsa is dedicated to celebrating and sharing the diverse culinary heritage of Indonesia through our premium snack brands. We are committed to quality, authenticity, and delivering delicious experiences to snack lovers everywhere. Our mission is to support local producers and bring the best of Indonesian flavors to the global stage.</p>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p>Have questions, partnership inquiries, or just want to say hello? We'd love to hear from you!</p>
+        <p>Email: <a href="mailto:info@kudapananakbangsa.com">info@kudapananakbangsa.com</a></p>
+        <p>Phone: <a href="tel:+628123456789">+62 812 3456 789</a> (Example - Please Update)</p>
+        <p>Address: [Your Full Business Address Here for Meta Verification - e.g., Jl. Contoh No. 123, Jakarta Selatan, DKI Jakarta 12345, Indonesia]</p>
+        <p>Operating Hours: Monday - Friday, 9:00 AM - 5:00 PM (GMT+7)</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Kudapan Anak Bangsa. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#privacy-policy">Privacy Policy</a> <!-- Link to your Privacy Policy page -->
+            <a href="#terms-of-service">Terms of Service</a> <!-- Link to your Terms of Service page -->
+        </div>
+        <p>Operated by IMAJI AI Pte. Ltd. and CV KUDAPAN ANAK BANGSA.</p>
+    </footer>
+</body>
+</html>
