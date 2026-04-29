@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order — Kudapan Anak Bangsa</title>
+  <meta name="description" content="Order authentic Indonesian snacks from Kudapan Anak Bangsa. Secure checkout powered by Xendit.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream:       oklch(96.5% 0.018 72);
+      --cream-deep:  oklch(92%   0.025 68);
+      --sand:        oklch(87%   0.04  72);
+      --terracotta:  oklch(48%   0.13  35);
+      --terra-light: oklch(62%   0.12  38);
+      --terra-dark:  oklch(30%   0.09  28);
+      --turmeric:    oklch(78%   0.19  82);
+      --olive:       oklch(52%   0.12  130);
+      --ink:         oklch(18%   0.025 30);
+      --ink-soft:    oklch(40%   0.04  35);
+      --success:     oklch(52%   0.14  145);
+      --error:       oklch(50%   0.18  22);
+
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Plus Jakarta Sans', sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      padding: 1.1rem clamp(1.5rem, 5vw, 4rem);
+      display: flex; align-items: center; justify-content: space-between;
+      background: oklch(96.5% 0.018 72 / 0.96);
+      box-shadow: 0 1px 0 oklch(60% 0.06 60 / 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 600; color: var(--terracotta);
+      letter-spacing: 0.01em; line-height: 1.1;
+    }
+    .nav-logo span {
+      display: block; font-size: 0.6em; font-weight: 300;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft);
+    }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+      color: var(--ink-soft); transition: color 0.25s;
+    }
+    .nav-back:hover { color: var(--terracotta); }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    /* ─── CHECKOUT LAYOUT ────────────────────────────────── */
+    .checkout-wrapper {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: start;
+    }
+
+    /* ─── PAGE TITLE ─────────────────────────────────────── */
+    .checkout-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 300; line-height: 1;
+      color: var(--ink); margin-bottom: 0.4rem;
+    }
+    .checkout-title em { font-style: italic; color: var(--terracotta); }
+    .checkout-subtitle {
+      font-size: 0.88rem; font-weight: 300;
+      color: var(--ink-soft); margin-bottom: 2.5rem;
+    }
+
+    /* ─── FORM ───────────────────────────────────────────── */
+    .form-section {
+      margin-bottom: 2.5rem;
+    }
+    .form-section-label {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--terracotta);
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .form-section-label::before {
+      content: ''; display: block; width: 1.5rem; height: 1px;
+      background: var(--terracotta); flex-shrink: 0;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group {
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    label {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    input, select, textarea {
+      font-family: var(--ff-body);
+      font-size: 0.9rem; font-weight: 400;
+      color: var(--ink);
+      background: var(--cream-deep);
+      border: 1px solid var(--sand);
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.25s, background 0.25s;
+      width: 100%; border-radius: 0;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--terracotta);
+      background: var(--cream);
+    }
+    input::placeholder { color: oklch(65% 0.03 50); }
+    textarea { resize: vertical; min-height: 80px; }
+
+    /* ─── PRODUCT SELECTOR ───────────────────────────────── */
+    .product-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--sand);
+      margin-bottom: 1.5rem;
+    }
+    .product-option {
+      position: relative;
+    }
+    .product-option input[type="radio"] {
+      position: absolute; opacity: 0; width: 0; height: 0;
+    }
+    .product-option label {
+      display: flex; flex-direction: column;
+      padding: 1.25rem 1.5rem;
+      background: var(--cream);
+      cursor: pointer;
+      transition: background 0.25s;
+      text-transform: none; letter-spacing: 0;
+      border: 2px solid transparent;
+    }
+    .product-option input:checked + label {
+      background: oklch(94% 0.028 70);
+      border-color: var(--terracotta);
+    }
+    .product-option label:hover { background: oklch(94% 0.025 70); }
+    .option-name {
+      font-family: var(--ff-display);
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--terra-dark); margin-bottom: 0.2rem;
+    }
+    .option-desc {
+      font-size: 0.78rem; font-weight: 300;
+      color: var(--ink-soft); margin-bottom: 0.6rem; line-height: 1.5;
+    }
+    .option-price {
+      font-family: var(--ff-display);
+      font-size: 1.2rem; font-weight: 600;
+      color: var(--terracotta);
+    }
+    .option-check {
+      position: absolute; top: 0.75rem; right: 0.75rem;
+      width: 20px; height: 20px;
+      border: 1.5px solid var(--sand); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .product-option input:checked ~ .option-check,
+    .product-option input:checked + label .option-check {
+      background: var(--terracotta); border-color: var(--terracotta);
+    }
+
+    /* ─── QTY ────────────────────────────────────────────── */
+    .qty-control {
+      display: flex; align-items: center; gap: 0;
+      border: 1px solid var(--sand); width: fit-content;
+    }
+    .qty-btn {
+      width: 40px; height: 40px;
+      background: var(--cream-deep); border: none; cursor: pointer;
+      font-size: 1.1rem; color: var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .qty-btn:hover { background: var(--sand); }
+    .qty-display {
+      width: 52px; height: 40px;
+      text-align: center;
+      font-family: var(--ff-body); font-size: 0.9rem; font-weight: 500;
+      border: none; border-left: 1px solid var(--sand); border-right: 1px solid var(--sand);
+      background: var(--cream); color: var(--ink);
+    }
+    .qty-display:focus { outline: none; border-color: var(--terracotta); }
+
+    /* ─── ORDER SUMMARY (RIGHT COLUMN) ─────────────────── */
+    .order-summary {
+      position: sticky; top: 90px;
+      background: var(--terra-dark);
+      padding: clamp(2rem, 4vw, 3rem);
+    }
+    .summary-title {
+      font-family: var(--ff-display);
+      font-size: 1.6rem; font-weight: 300;
+      color: var(--cream); margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid oklch(35% 0.05 30);
+    }
+    .summary-title em { font-style: italic; color: var(--turmeric); }
+
+    .summary-item {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid oklch(30% 0.04 28);
+      gap: 1rem;
+    }
+    .summary-item:first-of-type { border-top: 1px solid oklch(30% 0.04 28); }
+    .summary-item-name {
+      font-size: 0.88rem; font-weight: 400; color: var(--cream);
+    }
+    .summary-item-qty {
+      font-size: 0.75rem; color: oklch(55% 0.05 50); margin-top: 0.2rem;
+    }
+    .summary-item-price {
+      font-family: var(--ff-display);
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--turmeric); white-space: nowrap;
+    }
+
+    .summary-empty {
+      font-size: 0.85rem; color: oklch(50% 0.04 45);
+      font-style: italic; padding: 1rem 0;
+    }
+
+    .summary-total-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-top: 1.5rem; padding-top: 1.5rem;
+      border-top: 1px solid oklch(38% 0.06 32);
+    }
+    .summary-total-label {
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: oklch(55% 0.05 50);
+    }
+    .summary-total-amount {
+      font-family: var(--ff-display);
+      font-size: 2rem; font-weight: 600;
+      color: var(--turmeric);
+    }
+
+    .summary-note {
+      margin-top: 1.25rem;
+      font-size: 0.75rem; color: oklch(45% 0.04 40);
+      line-height: 1.65;
+    }
+    .summary-note a { color: oklch(58% 0.08 50); }
+
+    .summary-badges {
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+    .badge {
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: oklch(55% 0.05 50);
+      border: 1px solid oklch(35% 0.05 30);
+      padding: 0.3rem 0.65rem;
+    }
+
+    /* ─── SUBMIT BUTTON ──────────────────────────────────── */
+    .btn-pay {
+      width: 100%; margin-top: 2rem;
+      display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+      background: var(--turmeric); color: var(--terra-dark);
+      font-family: var(--ff-body); font-size: 0.85rem;
+      font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 1.1rem 2rem;
+      border: none; cursor: pointer;
+      transition: background 0.3s, transform 0.25s var(--ease-out-expo);
+    }
+    .btn-pay:hover:not(:disabled) {
+      background: oklch(82% 0.18 82); transform: translateY(-2px);
+    }
+    .btn-pay:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .btn-pay svg { width: 15px; height: 15px; }
+    .btn-pay .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid oklch(30% 0.09 28 / 0.4);
+      border-top-color: var(--terra-dark);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── ALERT ──────────────────────────────────────────── */
+    .alert {
+      padding: 0.9rem 1.25rem;
+      font-size: 0.85rem; font-weight: 400;
+      display: none; margin-top: 1rem;
+      line-height: 1.55;
+    }
+    .alert-error { background: oklch(96% 0.02 20); color: var(--error); border-left: 3px solid var(--error); }
+    .alert-success { background: oklch(96% 0.02 145); color: var(--success); border-left: 3px solid var(--success); }
+    .alert.show { display: block; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      padding: 2rem 0;
+      margin-top: clamp(4rem, 8vw, 7rem);
+    }
+    .footer-inner {
+      max-width: 1160px; margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { font-family: var(--ff-display); font-size: 1rem; font-weight: 600; color: oklch(55% 0.04 50); }
+    .footer-copy { font-size: 0.78rem; font-weight: 300; color: oklch(40% 0.03 40); }
+
+    /* ─── MOBILE ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .checkout-wrapper { grid-template-columns: 1fr; }
+      .order-summary { position: static; }
+      .form-row { grid-template-columns: 1fr; }
+      .product-options { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .checkout-wrapper { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Kudapan Anak Bangsa home">
+      Kudapan Anak Bangsa
+      <span>Snacks of the Nation</span>
+    </a>
+    <a href="index.html#menu" class="nav-back">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 7H2M7 2L2 7l5 5"/></svg>
+      Back to Menu
+    </a>
+  </nav>
+
+  <!-- CHECKOUT -->
+  <main>
+    <div class="checkout-wrapper">
+
+      <!-- LEFT: FORM -->
+      <div>
+        <h1 class="checkout-title">Complete your <em>Order</em></h1>
+        <p class="checkout-subtitle">Fill in your details and we'll process your payment securely via Xendit.</p>
+
+        <form id="checkoutForm" novalidate>
+
+          <!-- PRODUCT SELECTION -->
+          <div class="form-section">
+            <p class="form-section-label">Choose Your Snack</p>
+            <div class="product-options" role="radiogroup" aria-label="Product selection">
+
+              <div class="product-option">
+                <input type="radio" name="product" id="opt-kuku" value="kuku-macan" data-price="15000">
+                <label for="opt-kuku">
+                  <span class="option-name">Kuku Macan</span>
+                  <span class="option-desc">Crunchy savory Indonesian fried dough snack</span>
+                  <span class="option-price">Rp 15.000</span>
+                  <span class="option-check" aria-hidden="true">
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="1.8"><path d="M1 4l3 3 5-5"/></svg>
+                  </span>
+                </label>
+              </div>
+
+              <div class="product-option">
+                <input type="radio" name="product" id="opt-reng" value="rengginang" data-price="10000">
+                <label for="opt-reng">
+                  <span class="option-name">Rengginang</span>
+                  <span class="option-desc">Crispy glutinous rice crackers, authentically made</span>
+                  <span class="option-price">Rp 10.000</span>
+                  <span class="option-check" aria-hidden="true">
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="1.8"><path d="M1 4l3 3 5-5"/></svg>
+                  </span>
+                </label>
+              </div>
+
+            </div>
+
+            <!-- QUANTITY -->
+            <div style="display:flex; align-items:center; gap:1rem; margin-top:0.5rem;">
+              <label for="qtyDisplay" style="font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);">Quantity</label>
+              <div class="qty-control">
+                <button type="button" class="qty-btn" id="qtyMinus" aria-label="Decrease quantity">−</button>
+                <input class="qty-display" type="number" id="qtyDisplay" value="1" min="1" max="99" aria-label="Quantity">
+                <button type="button" class="qty-btn" id="qtyPlus" aria-label="Increase quantity">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CUSTOMER DETAILS -->
+          <div class="form-section">
+            <p class="form-section-label">Your Details</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Budi" required>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Santoso">
+              </div>
+              <div class="form-group full">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="budi@email.com" required>
+              </div>
+              <div class="form-group full">
+                <label for="phone">Phone Number (WhatsApp) *</label>
+                <input type="tel" id="phone" name="phone" placeholder="+62 812 3456 7890" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- DELIVERY ADDRESS -->
+          <div class="form-section">
+            <p class="form-section-label">Delivery Address</p>
+            <div class="form-row">
+              <div class="form-group full">
+                <label for="street">Street Address *</label>
+                <input type="text" id="street" name="street" placeholder="Jl. Contoh No. 1" required>
+              </div>
+              <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="city" placeholder="Jakarta" required>
+              </div>
+              <div class="form-group">
+                <label for="province">Province *</label>
+                <input type="text" id="province" name="province" placeholder="DKI Jakarta" required>
+              </div>
+              <div class="form-group">
+                <label for="postal">Postal Code *</label>
+                <input type="text" id="postal" name="postal" placeholder="14250" required>
+              </div>
+              <div class="form-group full">
+                <label for="notes">Order Notes (optional)</label>
+                <textarea id="notes" name="notes" placeholder="e.g. Ring the bell, leave at door, etc."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-error" id="formError" role="alert"></div>
+
+        </form>
+      </div>
+
+      <!-- RIGHT: ORDER SUMMARY -->
+      <aside class="order-summary" aria-label="Order summary">
+        <h2 class="summary-title">Order <em>Summary</em></h2>
+
+        <div id="summaryItems">
+          <p class="summary-empty">Select a product above to see your order.</p>
+        </div>
+
+        <div class="summary-total-row">
+          <span class="summary-total-label">Total</span>
+          <span class="summary-total-amount" id="summaryTotal">Rp 0</span>
+        </div>
+
+        <p class="summary-note">
+          Payment is processed securely by Xendit. We accept credit/debit cards, bank transfer, QRIS, OVO, GoPay, Dana, ShopeePay, and more.
+        </p>
+
+        <div class="summary-badges" aria-label="Accepted payments">
+          <span class="badge">QRIS</span>
+          <span class="badge">Transfer</span>
+          <span class="badge">VISA</span>
+          <span class="badge">Mastercard</span>
+          <span class="badge">OVO</span>
+          <span class="badge">GoPay</span>
+          <span class="badge">Dana</span>
+        </div>
+
+        <button type="submit" form="checkoutForm" class="btn-pay" id="btnPay" disabled>
+          <span class="spinner" id="btnSpinner" aria-hidden="true"></span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" id="btnIcon" aria-hidden="true">
+            <rect x="1" y="4" width="14" height="10" rx="1"/>
+            <path d="M1 8h14"/>
+          </svg>
+          Proceed to Payment
+        </button>
+
+        <div class="alert alert-success" id="formSuccess" role="status"></div>
+        <div class="alert alert-error" id="payError" role="alert"></div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-logo">Kudapan Anak Bangsa</p>
+      <p class="footer-copy">&copy; 2026 CV Kudapan Anak Bangsa — NIB 1000000006634297</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── XENDIT CONFIG ────────────────────────────────────────────
+    // Replace with your actual Xendit secret key.
+    // In production, move invoice creation to a backend to protect this key.
+    const XENDIT_API_KEY = 'YOUR_XENDIT_SECRET_KEY_HERE';
+
+    const ORIGIN = window.location.origin;
+    const XENDIT_SUCCESS_URL = ORIGIN + '/thank-you.html';
+    const XENDIT_FAILURE_URL = ORIGIN + '/checkout.html';
+
+    // ── PRODUCTS ─────────────────────────────────────────────────
+    const PRODUCTS = {
+      'kuku-macan': { name: 'Kuku Macan',  price: 15000, sku: 'KAB-001' },
+      'rengginang':  { name: 'Rengginang', price: 10000, sku: 'KAB-002' },
+    };
+
+    // ── STATE ─────────────────────────────────────────────────────
+    let selectedProduct = null;
+    let qty = 1;
+
+    // ── DOM REFS ─────────────────────────────────────────────────
+    const form        = document.getElementById('checkoutForm');
+    const btnPay      = document.getElementById('btnPay');
+    const btnSpinner  = document.getElementById('btnSpinner');
+    const btnIcon     = document.getElementById('btnIcon');
+    const summaryItems = document.getElementById('summaryItems');
+    const summaryTotal = document.getElementById('summaryTotal');
+    const formError   = document.getElementById('formError');
+    const payError    = document.getElementById('payError');
+    const formSuccess = document.getElementById('formSuccess');
+    const qtyDisplay  = document.getElementById('qtyDisplay');
+
+    // ── PRE-SELECT FROM URL PARAM ─────────────────────────────────
+    const urlProduct = new URLSearchParams(window.location.search).get('product');
+    if (urlProduct && PRODUCTS[urlProduct]) {
+      const radio = document.querySelector(`input[name="product"][value="${urlProduct}"]`);
+      if (radio) { radio.checked = true; selectProduct(urlProduct); }
+    }
+
+    // ── PRODUCT SELECTION ─────────────────────────────────────────
+    document.querySelectorAll('input[name="product"]').forEach(radio => {
+      radio.addEventListener('change', () => selectProduct(radio.value));
+    });
+
+    function selectProduct(value) {
+      selectedProduct = PRODUCTS[value] || null;
+      updateSummary();
+    }
+
+    // ── QUANTITY ──────────────────────────────────────────────────
+    document.getElementById('qtyMinus').addEventListener('click', () => {
+      if (qty > 1) { qty--; qtyDisplay.value = qty; updateSummary(); }
+    });
+    document.getElementById('qtyPlus').addEventListener('click', () => {
+      if (qty < 99) { qty++; qtyDisplay.value = qty; updateSummary(); }
+    });
+    qtyDisplay.addEventListener('change', () => {
+      qty = Math.max(1, Math.min(99, parseInt(qtyDisplay.value) || 1));
+      qtyDisplay.value = qty;
+      updateSummary();
+    });
+
+    // ── UPDATE SUMMARY ────────────────────────────────────────────
+    function formatRp(amount) {
+      return 'Rp ' + amount.toLocaleString('id-ID');
+    }
+
+    function updateSummary() {
+      if (!selectedProduct) {
+        summaryItems.innerHTML = '<p class="summary-empty">Select a product above to see your order.</p>';
+        summaryTotal.textContent = 'Rp 0';
+        btnPay.disabled = true;
+        return;
+      }
+      const lineTotal = selectedProduct.price * qty;
+      summaryItems.innerHTML = `
+        <div class="summary-item">
+          <div>
+            <p class="summary-item-name">${selectedProduct.name}</p>
+            <p class="summary-item-qty">${qty} × ${formatRp(selectedProduct.price)}</p>
+          </div>
+          <span class="summary-item-price">${formatRp(lineTotal)}</span>
+        </div>`;
+      summaryTotal.textContent = formatRp(lineTotal);
+      btnPay.disabled = false;
+    }
+
+    // ── FORM SUBMIT ───────────────────────────────────────────────
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      hideAlerts();
+
+      if (!selectedProduct) {
+        showError(formError, 'Please select a product before continuing.');
+        return;
+      }
+
+      // Basic validation
+      const required = ['firstName', 'email', 'phone', 'street', 'city', 'province', 'postal'];
+      for (const id of required) {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) {
+          showError(formError, 'Please fill in all required fields (marked with *).');
+          el.focus();
+          return;
+        }
+      }
+      const emailVal = document.getElementById('email').value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+        showError(formError, 'Please enter a valid email address.');
+        return;
+      }
+
+      setLoading(true);
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName  = document.getElementById('lastName').value.trim();
+      const phone     = document.getElementById('phone').value.trim();
+      const street    = document.getElementById('street').value.trim();
+      const city      = document.getElementById('city').value.trim();
+      const province  = document.getElementById('province').value.trim();
+      const postal    = document.getElementById('postal').value.trim();
+      const notes     = document.getElementById('notes').value.trim();
+      const total     = selectedProduct.price * qty;
+
+      try {
+        const invoice = await createXenditInvoice({
+          externalId:  'KAB-' + Date.now(),
+          amount:      total,
+          email:       emailVal,
+          phone:       phone,
+          name:        [firstName, lastName].filter(Boolean).join(' '),
+          description: `${selectedProduct.name} × ${qty}`,
+          items: [{
+            name:      selectedProduct.name,
+            quantity:  qty,
+            price:     selectedProduct.price,
+            category:  'Snack',
+            sku:       selectedProduct.sku,
+          }],
+          address: { street, city, province, postal },
+          notes: notes,
+        });
+
+        // Redirect to Xendit hosted checkout
+        window.location.href = invoice.invoice_url;
+
+      } catch (err) {
+        setLoading(false);
+        showError(payError, err.message || 'Payment could not be initiated. Please try again or contact us at kudapananakbangsa@gmail.com');
+      }
+    });
+
+    // ── XENDIT INVOICE CREATION ───────────────────────────────────
+    async function createXenditInvoice(data) {
+      const body = {
+        external_id:         data.externalId,
+        amount:              data.amount,
+        payer_email:         data.email,
+        description:         data.description,
+        currency:            'IDR',
+        customer: {
+          given_names:    data.name,
+          email:          data.email,
+          mobile_number:  data.phone,
+          addresses: [{
+            street_line1:  data.address.street,
+            city:          data.address.city,
+            province:      data.address.province,
+            postal_code:   data.address.postal,
+            country:       'ID',
+          }],
+        },
+        customer_notification_preference: {
+          invoice_created:  ['email', 'whatsapp'],
+          invoice_paid:     ['email', 'whatsapp'],
+        },
+        items:               data.items,
+        success_redirect_url: XENDIT_SUCCESS_URL,
+        failure_redirect_url: XENDIT_FAILURE_URL,
+        payment_methods:     ['CREDIT_CARD', 'DEBIT_CARD', 'BRI_VA', 'BCA_VA', 'BNI_VA', 'MANDIRI_VA', 'PERMATA_VA', 'QRIS', 'OVO', 'DANA', 'SHOPEEPAY', 'GOPAY'],
+      };
+
+      if (data.notes) {
+        body.notes = data.notes;
+      }
+
+      const res = await fetch('https://api.xendit.co/v2/invoices', {
+        method:  'POST',
+        headers: {
+          'Authorization': 'Basic ' + btoa(XENDIT_API_KEY + ':'),
+          'Content-Type':  'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.message || `Payment error (${res.status}). Please try again.`);
+      }
+
+      return res.json();
+    }
+
+    // ── HELPERS ───────────────────────────────────────────────────
+    function setLoading(on) {
+      btnPay.disabled = on;
+      btnSpinner.style.display = on ? 'block' : 'none';
+      btnIcon.style.display    = on ? 'none'  : 'block';
+      btnPay.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = on ? ' Processing…' : ' Proceed to Payment'; });
+    }
+    function showError(el, msg) {
+      el.textContent = msg;
+      el.classList.add('show');
+    }
+    function hideAlerts() {
+      [formError, payError, formSuccess].forEach(el => el.classList.remove('show'));
+    }
+  </script>
+
+</body>
+</html>

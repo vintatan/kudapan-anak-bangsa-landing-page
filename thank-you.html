@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You — Kudapan Anak Bangsa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: oklch(96.5% 0.018 72); --terracotta: oklch(48% 0.13 35);
+      --terra-dark: oklch(30% 0.09 28); --turmeric: oklch(78% 0.19 82);
+      --ink: oklch(18% 0.025 30); --ink-soft: oklch(40% 0.04 35);
+      --sand: oklch(87% 0.04 72);
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body: 'Plus Jakarta Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--ff-body); background: var(--cream);
+      color: var(--ink); min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 2rem; text-align: center;
+      -webkit-font-smoothing: antialiased;
+    }
+    .icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: oklch(94% 0.04 145);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 2rem;
+    }
+    .icon svg { width: 36px; height: 36px; color: oklch(48% 0.16 145); }
+    .title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300; line-height: 1.05;
+      color: var(--ink); margin-bottom: 0.75rem;
+    }
+    .title em { font-style: italic; color: var(--terracotta); }
+    .subtitle {
+      font-size: 0.92rem; font-weight: 300;
+      color: var(--ink-soft); max-width: 40ch;
+      margin: 0 auto 2.5rem; line-height: 1.8;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--terracotta); color: var(--cream);
+      font-family: var(--ff-body); font-size: 0.8rem;
+      font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.9rem 2rem;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .btn:hover { background: var(--terra-dark); }
+    .note {
+      margin-top: 1.5rem; font-size: 0.78rem;
+      color: oklch(55% 0.04 50);
+    }
+    .note a { color: var(--terracotta); }
+  </style>
+</head>
+<body>
+  <div class="icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M20 6L9 17l-5-5"/>
+    </svg>
+  </div>
+  <h1 class="title">Terima Kasih! <em>Thank You.</em></h1>
+  <p class="subtitle">
+    Your payment was successful. We've received your order and will prepare your snacks with care.
+    Check your email for your order confirmation.
+  </p>
+  <a href="index.html" class="btn">Back to Home</a>
+  <p class="note">Questions? <a href="mailto:kudapananakbangsa@gmail.com">kudapananakbangsa@gmail.com</a> · <a href="tel:+6281295029550">+62 812 9502 9550</a></p>
+</body>
+</html>

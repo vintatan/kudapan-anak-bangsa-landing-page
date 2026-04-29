@@ -673,6 +673,100 @@
     .hero-line:nth-child(3) { transition-delay: 0.16s; }
     .hero-line:nth-child(4) { transition-delay: 0.24s; }
 
+    /* ─── MENU / PRODUCTS SECTION ───────────────────────── */
+    #menu {
+      padding: clamp(5rem, 10vw, 9rem) 0;
+      background: var(--cream-deep);
+    }
+    .menu-header {
+      text-align: center;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+    .menu-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.05;
+      margin-bottom: 0.75rem;
+    }
+    .menu-title em { font-style: italic; color: var(--terracotta); }
+    .menu-subtitle {
+      font-size: 0.9rem; font-weight: 300;
+      color: var(--ink-soft); max-width: 42ch;
+      margin: 0 auto; line-height: 1.75;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px; background: var(--sand);
+      max-width: 860px; margin: 0 auto;
+    }
+    .product-card {
+      background: var(--cream);
+      padding: clamp(2rem, 4vw, 3.5rem);
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+      transition: background 0.3s;
+    }
+    .product-card:hover { background: oklch(94% 0.025 70); }
+    .product-bg-num {
+      position: absolute; bottom: -1.5rem; right: -0.5rem;
+      font-family: var(--ff-display); font-size: 10rem;
+      font-weight: 700; color: var(--sand); line-height: 1;
+      user-select: none; pointer-events: none;
+    }
+    .product-chip {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--terracotta);
+      padding: 0.35rem 0.85rem;
+      border: 1px solid var(--terracotta);
+      width: fit-content; margin-bottom: 1.5rem;
+    }
+    .product-name {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600; color: var(--terra-dark);
+      line-height: 1.05; margin-bottom: 0.75rem;
+      position: relative; z-index: 1;
+    }
+    .product-desc {
+      font-size: 0.88rem; font-weight: 300;
+      color: var(--ink-soft); line-height: 1.8;
+      max-width: 34ch; margin-bottom: 2rem;
+      position: relative; z-index: 1;
+    }
+    .product-footer {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-top: auto;
+      position: relative; z-index: 1;
+    }
+    .product-price {
+      font-family: var(--ff-display);
+      font-size: 2rem; font-weight: 600;
+      color: var(--terracotta); line-height: 1;
+    }
+    .product-price small {
+      display: block; font-family: var(--ff-body);
+      font-size: 0.72rem; font-weight: 400;
+      color: var(--ink-soft); letter-spacing: 0.06em;
+      margin-top: 0.2rem;
+    }
+    .btn-order {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--terracotta); color: var(--cream);
+      font-family: var(--ff-body); font-size: 0.78rem;
+      font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.85rem 1.6rem;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: background 0.3s, transform 0.25s var(--ease-out-quart);
+    }
+    .btn-order:hover { background: var(--terra-dark); transform: translateY(-2px); }
+    .btn-order svg { width: 13px; height: 13px; transition: transform 0.3s; }
+    .btn-order:hover svg { transform: translateX(3px); }
+
     /* ─── MOBILE ─────────────────────────────────────────── */
     .nav-hamburger {
       display: none;
@@ -689,6 +783,7 @@
       .hero-left { padding-top: 7rem; min-height: 60svh; }
       .hero-right { min-height: 50svh; }
       .brands-grid { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
       .about-grid { grid-template-columns: 1fr; }
       .contact-inner { grid-template-columns: 1fr; }
       .about-pillars { grid-template-columns: 1fr; }
@@ -718,8 +813,10 @@
     <ul class="nav-links" role="list">
       <li><a href="#hero">Home</a></li>
       <li><a href="#brands">Brands</a></li>
+      <li><a href="#menu">Menu</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="checkout.html" style="color:var(--terracotta);font-weight:600;">Order Now</a></li>
     </ul>
     <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -855,6 +952,67 @@
           </a>
         </div>
       </article>
+    </div>
+  </section>
+
+  <!-- MENU / PRODUCTS -->
+  <section id="menu" class="section" aria-label="Our Menu">
+    <div class="container">
+      <header class="menu-header reveal">
+        <p class="section-label" style="justify-content:center;">Our Products</p>
+        <h2 class="menu-title">Traditional <em>Indonesian Snacks</em></h2>
+        <p class="menu-subtitle">Handcrafted with authentic recipes and the finest local ingredients. Order direct and taste Indonesia.</p>
+      </header>
+
+      <div class="menu-grid" role="list">
+
+        <!-- Kuku Macan -->
+        <article class="product-card reveal" role="listitem">
+          <div class="product-bg-num" aria-hidden="true">01</div>
+          <div class="product-chip">
+            <span class="brand-chip-dot" aria-hidden="true"></span>
+            @ini_jsnack
+          </div>
+          <h3 class="product-name">Kuku Macan</h3>
+          <p class="product-desc">
+            Crunchy, savory, irresistible. Kuku Macan is a beloved traditional Indonesian snack made from crispy fried dough — the perfect companion for any time of day.
+          </p>
+          <div class="product-footer">
+            <div class="product-price">
+              Rp 15.000
+              <small>per pack</small>
+            </div>
+            <a href="checkout.html?product=kuku-macan" class="btn-order">
+              Order Now
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Rengginang -->
+        <article class="product-card reveal reveal-delay-2" role="listitem">
+          <div class="product-bg-num" aria-hidden="true">02</div>
+          <div class="product-chip">
+            <span class="brand-chip-dot" aria-hidden="true"></span>
+            @ini_jsnack
+          </div>
+          <h3 class="product-name">Rengginang</h3>
+          <p class="product-desc">
+            Crispy glutinous rice crackers sun-dried and fried to perfection. Rengginang carries the warmth of home cooking in every golden, airy bite.
+          </p>
+          <div class="product-footer">
+            <div class="product-price">
+              Rp 10.000
+              <small>per pack</small>
+            </div>
+            <a href="checkout.html?product=rengginang" class="btn-order">
+              Order Now
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
     </div>
   </section>
 
